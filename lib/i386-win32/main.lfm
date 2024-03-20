@@ -1,0 +1,114 @@
+object frmMain: TfrmMain
+  Left = 704
+  Height = 720
+  Top = 136
+  Width = 396
+  Caption = 'frmMain'
+  ClientHeight = 720
+  ClientWidth = 396
+  Color = clWhite
+  OnCreate = FormCreate
+  object Panel1: TPanel
+    Left = 0
+    Height = 672
+    Top = 0
+    Width = 396
+    Align = alClient
+    ClientHeight = 672
+    ClientWidth = 396
+    ParentBackground = False
+    TabOrder = 0
+    object pnlMain: TPanel
+      Left = 1
+      Height = 620
+      Top = 51
+      Width = 394
+      Align = alClient
+      BorderSpacing.Top = 50
+      BevelColor = clMenuHighlight
+      BevelWidth = 10
+      ClientHeight = 620
+      ClientWidth = 394
+      ParentBackground = False
+      TabOrder = 0
+      object Panel3: TPanel
+        Left = 10
+        Height = 138
+        Top = 472
+        Width = 374
+        Align = alBottom
+        Color = 2590518
+        ParentBackground = False
+        ParentColor = False
+        TabOrder = 2
+      end
+      object Panel2: TPanel
+        Left = 10
+        Height = 462
+        Top = 10
+        Width = 374
+        Align = alClient
+        Color = 14804860
+        ParentBackground = False
+        ParentColor = False
+        TabOrder = 1
+      end
+      object pnlGame: TPanel
+        Tag = 2
+        Left = 20
+        Height = 65
+        Top = 344
+        Width = 66
+        BevelOuter = bvNone
+        ClientHeight = 65
+        ClientWidth = 66
+        Color = clHighlight
+        ParentBackground = False
+        ParentColor = False
+        TabOrder = 0
+        OnClick = pnlGameClick
+        object Button1: TButton
+          Left = 496
+          Height = 25
+          Top = 384
+          Width = 75
+          Caption = 'Button1'
+          TabOrder = 0
+          OnClick = Button1Click
+        end
+      end
+    end
+    object Label1: TLabel
+      Left = 360
+      Height = 37
+      Top = 8
+      Width = 15
+      Alignment = taRightJustify
+      Caption = '0'
+      Color = clMoneyGreen
+      Font.Height = -27
+      ParentColor = False
+      ParentFont = False
+    end
+  end
+  object SpeedButton1: TSpeedButton
+    Left = 0
+    Height = 48
+    Top = 672
+    Width = 396
+    Align = alBottom
+    OnClick = SpeedButton1Click
+  end
+  object timerCreatePipe: TTimer
+    Interval = 1200
+    OnTimer = timerCreatePipeTimer
+    Left = 48
+    Top = 8
+  end
+  object timerUpdate: TTimer
+    Interval = 10
+    OnTimer = timerUpdateTimer
+    Left = 48
+    Top = 56
+  end
+end
