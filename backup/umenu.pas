@@ -5,13 +5,16 @@ unit uMenu;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Buttons, uGame;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Buttons, StdCtrls,
+  ExtCtrls, uGame;
 
 type
 
   { TfrmMenu }
 
   TfrmMenu = class(TForm)
+    Image1: TImage;
+    imglist: TImageList;
     SpeedButton1: TSpeedButton;
     procedure SpeedButton1Click(Sender: TObject);
   private

@@ -6,29 +6,28 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  Buttons;
+  Buttons, BGRAImageList, RTTICtrls;
 
 type
 
   { TfrmGame }
 
   TfrmGame = class(TForm)
-    Button1: TButton;
+    BGRAImageList1: TBGRAImageList;
+    bird: TImage;
     Image1: TImage;
-    imgList: TImageList;
     Label1: TLabel;
     Label2: TLabel;
     Panel1: TPanel;
-    Panel2: TPanel;
-    Panel3: TPanel;
-    pnlGame: TPanel;
     pnlMain: TPanel;
     Shape1: TShape;
     SpeedButton1: TSpeedButton;
     timerCreatePipe: TTimer;
     timerUpdate: TTimer;
     procedure FormCreate(Sender: TObject);
+    procedure Panel1Click(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
+    procedure TIImage1Click(Sender: TObject);
     procedure timerCreatePipeTimer(Sender: TObject);
     procedure createPipe;
     procedure timerUpdateTimer(Sender: TObject);
@@ -63,6 +62,11 @@ begin
   started :=false;
 end;
 
+procedure TfrmGame.Panel1Click(Sender: TObject);
+begin
+
+end;
+
 procedure TfrmGame.SpeedButton1Click(Sender: TObject);
 begin
   started := true;
@@ -75,6 +79,11 @@ begin
     jumpSpeed := jumpSpeed -5;
 end;
 
+procedure TfrmGame.TIImage1Click(Sender: TObject);
+begin
+
+end;
+
 
 procedure TfrmGame.createPipe;
 var
@@ -82,8 +91,8 @@ var
   gapHeight, gapPosition, pipeTopHeight, pipeBottomHeight, pipeWidth: integer;
 begin
   // Definindo a altura do gap e sua posição vertical
-  gapHeight := 120; // Altura do espaço entre os pipes
-  gapPosition := Random(frmGame.Height - 320) + 100; // Posição vertical do gap
+  gapHeight := 200; // Altura do espaço entre os pipes
+  gapPosition := Random(frmGame.Height - 400) + 100; // Posição vertical do gap
 
   // Calculando a altura do pipe superior e inferior
   pipeTopHeight := gapPosition;
@@ -169,6 +178,10 @@ var
         end;
 
       end;
+      if (Components[i] is TImage) and (TImage(Components[i]).Tag = 3) then
+      begin
+        TImage(Components[i]).Left := TImage(Components[i]).Left - 1;
+      end;
     end;
   end;
 
@@ -200,17 +213,17 @@ var
           end;
         end;
       end;
-      if (Components[i] is TGroupBox) then
+      if (Components[i] is TImage) then
       begin
 
 
-        if TGroupBox(Components[i]).Tag = 2 then   //player
+        if TImage(Components[i]).Tag = 2 then   //player
         begin
-          TGroupBox(Components[i]).Top := TGroupBox(Components[i]).Top + jumpSpeed;
+          TImage(Components[i]).Top := TImage(Components[i]).Top + jumpSpeed;
 
-          if TGroupBox(Components[i]).Top + TGroupBox(Components[i]).Height > Self.Height then
+          if TImage(Components[i]).Top + TImage(Components[i]).Height > Self.Height then
           begin
-            TGroupBox(Components[i]).Top := Self.Height - TGroupBox(Components[i]).Height;
+            TImage(Components[i]).Top := Self.Height - TImage(Components[i]).Height;
           end;
         end;
       end;
@@ -232,7 +245,8 @@ end;
 function TfrmGame.CheckCollision(pnl: TPanel): Boolean;
 var
   Panel1Rect, Panel2Rect: TRect;
-  MovingPanel, FixedPanel: TPanel;
+  MovingPanel: TPanel;
+  BirdRect: TImage;
 
   function RectsOverlap(const Rect1, Rect2: TRect): Boolean;
   begin
@@ -240,9 +254,9 @@ var
                    (Rect1.Bottom < Rect2.Top) or (Rect1.Top > Rect2.Bottom));
   end;
 begin
-  FixedPanel := pnlGame;
+  BirdRect := bird;
 
-  Panel1Rect := Rect(FixedPanel.Left, FixedPanel.Top, FixedPanel.Left + FixedPanel.Width, FixedPanel.Top + FixedPanel.Height);
+  Panel1Rect := Rect(BirdRect.Left, BirdRect.Top, BirdRect.Left + BirdRect.Width, BirdRect.Top + BirdRect.Height);
 
 
   MovingPanel := pnl;
