@@ -6,32 +6,32 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  Buttons, BGRAImageList, RTTICtrls;
+  Buttons, BGRAImageList, BCLabel, BGRASpeedButton, RTTICtrls;
 
 type
 
   { TfrmGame }
 
   TfrmGame = class(TForm)
+    Label1: TLabel;
+    lbl: TBCLabel;
     BGRAImageList1: TBGRAImageList;
     bird: TImage;
     Image1: TImage;
-    Label1: TLabel;
-    Label2: TLabel;
     Panel1: TPanel;
     pnlMain: TPanel;
-    Shape1: TShape;
     SpeedButton1: TSpeedButton;
     timerCreatePipe: TTimer;
     timerUpdate: TTimer;
     procedure FormCreate(Sender: TObject);
-    procedure Panel1Click(Sender: TObject);
+    procedure Label1Click(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
-    procedure TIImage1Click(Sender: TObject);
     procedure timerCreatePipeTimer(Sender: TObject);
     procedure createPipe;
     procedure timerUpdateTimer(Sender: TObject);
     function CheckCollision(pnl: TPanel): Boolean;
+    function CheckCollision(img: TImage): Boolean;
+    function RectsOverlap(const Rect1, Rect2: TRect): Boolean;
   private
     started: boolean;
     jumpSpeed, velocityUpdateCounter: integer;
@@ -50,9 +50,26 @@ implementation
 { TfrmGame }
 
 procedure TfrmGame.timerCreatePipeTimer(Sender: TObject);
+
+  procedure moveBg;
+  var i: integer;
+  begin
+    for i := ComponentCount - 1 downto 0 do
+    begin
+      if (Components[i] is TImage) and (TImage(Components[i]).Tag = 3) then
+      begin
+        TImage(Components[i]).Left := TImage(Components[i]).Left - 1;
+      end;
+    end;
+  end;
+
+
 begin
   if started then
+  begin
+    moveBg;
     createPipe;
+  end;
 end;
 
 procedure TfrmGame.FormCreate(Sender: TObject);
@@ -62,7 +79,7 @@ begin
   started :=false;
 end;
 
-procedure TfrmGame.Panel1Click(Sender: TObject);
+procedure TfrmGame.Label1Click(Sender: TObject);
 begin
 
 end;
@@ -79,16 +96,11 @@ begin
     jumpSpeed := jumpSpeed -5;
 end;
 
-procedure TfrmGame.TIImage1Click(Sender: TObject);
-begin
-
-end;
-
-
 procedure TfrmGame.createPipe;
 var
   pipeTop, pipeBottom, gap: TPanel;
   gapHeight, gapPosition, pipeTopHeight, pipeBottomHeight, pipeWidth: integer;
+  beerTop, beerBot: TImage;
 begin
   // Definindo a altura do gap e sua posição vertical
   gapHeight := 200; // Altura do espaço entre os pipes
@@ -98,19 +110,33 @@ begin
   pipeTopHeight := gapPosition;
   pipeBottomHeight := frmGame.Height - (gapPosition + gapHeight);
 
-  pipeWidth := 80;
-  // Criando o pipe superior
-  pipeTop := TPanel.Create(Self);
-  pipeTop.Parent := pnlMain;
-  pipeTop.BevelColor := clgreen;
-  pipeTop.Color := clLime;
-  pipeTop.Width := pipeWidth;
-  pipeTop.Height := pipeTopHeight;
-  pipeTop.Left := frmGame.Width;
-  pipeTop.Top := 0;
-  pipeTop.BevelInner := bvLowered;
-  pipeTop.BevelWidth := 2;
-  pipeTop.Tag:= 10;
+  pipeWidth := 100;
+
+  beerTop := TImage.Create(Self);
+  beerTop.Parent := pnlMain;
+  beerTop.Width := 100;
+  beerTop.Height := 300;
+  beerTop.imageindex := 2;
+  beerTop.Images := BGRAImageList1;
+  beerTop.Imagewidth := 300;
+  beerTop.Top := pipeTopHeight - beerTop.Height;
+  beerTop.Left := frmGame.Width;
+  //beerTop.Picture.Assign(ImageList1.Images[0]);
+  beerTop.Visible := true;
+  beerTop.Tag := 10;
+
+   //Criando o pipe superior
+   //pipeTop := TPanel.Create(Self);
+   //pipeTop.Parent := pnlMain;
+   //pipeTop.BevelColor := clgreen;
+   //pipeTop.Color := clLime;
+   //pipeTop.Width := round(pipeWidth/4);
+   //pipeTop.Height := pipeTopHeight - 280;
+   //pipeTop.Left := frmGame.Width + Round(pipeWidth / 3);
+   //pipeTop.Top := 0;
+   //pipeTop.BevelInner := bvLowered;
+   //pipeTop.BevelWidth := 2;
+   //pipeTop.Tag:= 10;
 
   // Criando o gap
   gap := TPanel.Create(Self);
@@ -124,18 +150,31 @@ begin
   gap.Visible:=false;
   gap.tag := 9;
 
+  beerBot := TImage.Create(Self);
+  beerBot.Parent := pnlMain;
+  beerBot.Width := 100;
+  beerBot.Height := 300;
+  beerBot.imageindex := 3;
+  beerBot.Images := BGRAImageList1;
+  beerBot.Imagewidth := 300;
+  beerBot.Top := gapPosition + gapHeight;
+  beerBot.Left := frmGame.Width;
+  //beerTop.Picture.Assign(ImageList1.Images[0]);
+  beerBot.Visible := true;
+  beerBot.Tag := 10;
+
   // Criando o pipe inferior
-  pipeBottom := TPanel.Create(Self);
-  pipeBottom.Parent := pnlMain;
-  pipeBottom.BevelColor := clgreen;
-  pipeBottom.Color := clLime;
-  pipeBottom.Width := pipeWidth;
-  pipeBottom.Height := pipeBottomHeight;
-  pipeBottom.Left := frmGame.Width;
-  pipeBottom.Top := gapPosition + gapHeight;
-  pipeBottom.BevelInner := bvLowered;
-  pipeBottom.BevelWidth := 2;
-  pipeBottom.Tag:= 10;
+  //pipeBottom := TPanel.Create(Self);
+  //pipeBottom.Parent := pnlMain;
+  //pipeBottom.BevelColor := clgreen;
+  //pipeBottom.Color := clLime;
+  //pipeBottom.Width := pipeWidth;
+  //pipeBottom.Height := pipeBottomHeight;
+  //pipeBottom.Left := frmGame.Width;
+  //pipeBottom.Top := gapPosition + gapHeight;
+  //pipeBottom.BevelInner := bvLowered;
+  //pipeBottom.BevelWidth := 2;
+  //pipeBottom.Tag:= 10;
 
   // O evento OnClick aplica-se aos pipes, se necessário
   //pipeTop.OnClick := @Button1Click;
@@ -168,7 +207,7 @@ var
             begin
 
               Label1.Caption  := IntToStr(StrToInt(Label1.Caption) + 1);
-              Label2.Caption  := FloatToStr(round((strtoint(Label1.Caption)) / 9));
+              lbl.Caption  := FloatToStr(round((strtoint(Label1.Caption)) / 9));
             end;
         end;
 
@@ -178,9 +217,28 @@ var
         end;
 
       end;
-      if (Components[i] is TImage) and (TImage(Components[i]).Tag = 3) then
+
+      if (Components[i] is TImage) and (TImage(Components[i]).Tag = 10) then
       begin
-        TImage(Components[i]).Left := TImage(Components[i]).Left - 1;
+        TImage(Components[i]).Left := TImage(Components[i]).Left - 5;
+
+        if CheckCollision(TImage(Components[i])) then
+        begin
+            if TImage(Components[i]).Tag = 10 then
+              Close ;
+            //else
+            //if TImage(Components[i]).tag = 9 then
+            //begin
+            //
+            //  Label1.Caption  := IntToStr(StrToInt(Label1.Caption) + 1);
+            //  Label2.Caption  := FloatToStr(round((strtoint(Label1.Caption)) / 9));
+            //end;
+        end;
+
+        if TImage(Components[i]).Left < (TImage(Components[i]).Width * -1) then
+        begin
+          TImage(Components[i]).Free;
+        end;
       end;
     end;
   end;
@@ -247,12 +305,6 @@ var
   Panel1Rect, Panel2Rect: TRect;
   MovingPanel: TPanel;
   BirdRect: TImage;
-
-  function RectsOverlap(const Rect1, Rect2: TRect): Boolean;
-  begin
-       Result := not ((Rect1.Right < Rect2.Left) or (Rect1.Left > Rect2.Right) or
-                   (Rect1.Bottom < Rect2.Top) or (Rect1.Top > Rect2.Bottom));
-  end;
 begin
   BirdRect := bird;
 
@@ -264,6 +316,30 @@ begin
   Panel2Rect := Rect(MovingPanel.Left, MovingPanel.Top, MovingPanel.Left + MovingPanel.Width, MovingPanel.Top + MovingPanel.Height);
 
   result := RectsOverlap(Panel1Rect, Panel2Rect);
+end;
+
+function TfrmGame.CheckCollision(img: TImage): Boolean;
+var
+  Panel1Rect, Panel2Rect: TRect;
+  MovingPanel: TImage;
+  BirdRect: TImage;
+begin
+  BirdRect := bird;
+
+  Panel1Rect := Rect(BirdRect.Left, BirdRect.Top, BirdRect.Left + BirdRect.Width, BirdRect.Top + BirdRect.Height);
+
+
+  MovingPanel := img;
+
+  Panel2Rect := Rect(MovingPanel.Left, MovingPanel.Top, MovingPanel.Left + MovingPanel.Width, MovingPanel.Top + MovingPanel.Height);
+
+  result := RectsOverlap(Panel1Rect, Panel2Rect);
+end;
+
+function TfrmGame.RectsOverlap(const Rect1, Rect2: TRect): Boolean;
+begin
+     Result := not ((Rect1.Right < Rect2.Left) or (Rect1.Left > Rect2.Right) or
+                 (Rect1.Bottom < Rect2.Top) or (Rect1.Top > Rect2.Bottom));
 end;
 
 end.

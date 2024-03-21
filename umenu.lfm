@@ -1,17 +1,17 @@
 object frmMenu: TfrmMenu
   Left = 301
-  Height = 720
+  Height = 680
   Top = 250
   Width = 400
   BorderStyle = bsNone
   Caption = 'frmMenu'
-  ClientHeight = 720
+  ClientHeight = 680
   ClientWidth = 400
   Color = 11970839
   Position = poDesktopCenter
   object SpeedButton1: TSpeedButton
     Left = 100
-    Height = 120
+    Height = 80
     Top = 400
     Width = 200
     Align = alClient

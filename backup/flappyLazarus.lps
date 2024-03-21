@@ -10,7 +10,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
         <CursorPos X="47" Y="22"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -20,10 +20,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uGame"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="150"/>
-        <CursorPos X="39" Y="177"/>
-        <UsageCount Value="22"/>
+        <TopLine Value="176"/>
+        <CursorPos Y="209"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -34,133 +33,134 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uMenu"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <CursorPos X="14" Y="12"/>
-        <UsageCount Value="22"/>
+        <CursorPos X="32" Y="11"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="umenu.pas"/>
-        <Caret Line="26" Column="48"/>
+        <Filename Value="ugame.pas"/>
+        <Caret Line="210" Column="24" TopLine="198"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="137" Column="32" TopLine="112"/>
-      </Position>
-      <Position>
-        <Filename Value="umenu.pas"/>
-        <Caret Line="11" Column="11"/>
-      </Position>
-      <Position>
-        <Filename Value="umenu.pas"/>
-        <Caret Line="12" Column="14"/>
+        <Caret Line="209" Column="24" TopLine="197"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="94" Column="18" TopLine="91"/>
+        <Caret Line="312" Column="31" TopLine="288"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="93" Column="18" TopLine="90"/>
+        <Caret Line="37" Column="66"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="100" Column="18" TopLine="97"/>
+        <Caret Line="147" Column="43" TopLine="119"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="69" Column="3" TopLine="66"/>
+        <Caret Line="127" Column="26" TopLine="97"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="68" Column="3" TopLine="65"/>
+        <Caret Line="96" Column="49" TopLine="72"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="67" Column="3" TopLine="64"/>
+        <Caret Line="95" Column="49" TopLine="71"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="66" Column="3" TopLine="63"/>
+        <Caret Line="102" Column="49" TopLine="78"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="238" Column="53" TopLine="217"/>
+        <Caret Line="105" Column="22" TopLine="69"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="251" Column="54" TopLine="218"/>
+        <Caret Line="36" Column="37" TopLine="9"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="258" Column="54" TopLine="225"/>
+        <Caret Line="35" Column="37" TopLine="9"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="90" Column="17" TopLine="83"/>
+        <Caret Line="37" Column="37" TopLine="9"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="89" Column="17" TopLine="82"/>
+        <Caret Line="69" Column="34" TopLine="42"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="88" Column="17" TopLine="81"/>
+        <Caret Line="13" Column="28"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="95" Column="71" TopLine="81"/>
+        <Caret Line="36" Column="51" TopLine="21"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="96" Column="71" TopLine="82"/>
+        <Caret Line="23" Column="44" TopLine="6"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="242" Column="38" TopLine="224"/>
+        <Caret Line="26" Column="24" TopLine="9"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="102" Column="12" TopLine="86"/>
+        <Caret Line="113" Column="45" TopLine="75"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="101" Column="12" TopLine="85"/>
+        <Caret Line="276" Column="3" TopLine="251"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="105" Column="109" TopLine="85"/>
+        <Caret Line="223" Column="34" TopLine="213"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="104" Column="109" TopLine="84"/>
+        <Caret Line="62" Column="29" TopLine="51"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="103" Column="109" TopLine="83"/>
+        <Caret Line="61" Column="29" TopLine="50"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="104" Column="109" TopLine="84"/>
+        <Caret Line="62" Column="29" TopLine="51"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="105" Column="109" TopLine="85"/>
+        <Caret Line="85" Column="3" TopLine="51"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="115" Column="22" TopLine="89"/>
+        <Caret Line="84" Column="3" TopLine="50"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="116" Column="22" TopLine="90"/>
+        <Caret Line="83" Column="3" TopLine="49"/>
       </Position>
       <Position>
         <Filename Value="ugame.pas"/>
-        <Caret Line="115" Column="22" TopLine="89"/>
+        <Caret Line="208" Column="19" TopLine="175"/>
+      </Position>
+      <Position>
+        <Filename Value="ugame.pas"/>
+        <Caret Line="202" Column="60" TopLine="176"/>
+      </Position>
+      <Position>
+        <Filename Value="ugame.pas"/>
+        <Caret Line="201" Column="64" TopLine="176"/>
       </Position>
     </JumpHistory>
     <RunParams>

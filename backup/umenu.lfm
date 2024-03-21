@@ -39,8 +39,8 @@ object frmMenu: TfrmMenu
   object imglist: TImageList
     Height = 400
     Width = 400
-    Left = 280
-    Top = 472
+    Left = 312
+    Top = 520
     Bitmap = {
       4C7A01000000900100009001000041AC03000000000078DAEC9D07781CE5B5F7
       D756B3D57BEFD51DE3D04228E9A4DCDCDC747A09C5040224A49084DC9B706FFA
