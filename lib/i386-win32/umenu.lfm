@@ -1,0 +1,25 @@
+object frmMenu: TfrmMenu
+  Left = 301
+  Height = 720
+  Top = 250
+  Width = 400
+  BorderStyle = bsNone
+  Caption = 'frmMenu'
+  ClientHeight = 720
+  ClientWidth = 400
+  Color = clTeal
+  Position = poDesktopCenter
+  object SpeedButton1: TSpeedButton
+    Left = 100
+    Height = 120
+    Top = 300
+    Width = 200
+    Align = alClient
+    BorderSpacing.Left = 100
+    BorderSpacing.Top = 300
+    BorderSpacing.Right = 100
+    BorderSpacing.Bottom = 300
+    Caption = 'PLAY'
+    OnClick = SpeedButton1Click
+  end
+end

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CONFIG>
-  <Compiler Value="D:\programs\Lazarus\fpc\3.2.2\bin\i386-win32\fpc.exe" Date="1482329590"/>
-  <Params Value=" -MObjFPC -Scghi -O1 -gw3 -gl -WG -l -vewnhibq -FiD:\github\flappylazarus\lib\i386-win32 -FuD:\programs\Lazarus\lcl\units\i386-win32\win32 -FuD:\programs\Lazarus\lcl\units\i386-win32 -FuD:\programs\Lazarus\components\freetype\lib\i386-win32 -FuD:\programs\Lazarus\components\lazutils\lib\i386-win32 -FuD:\programs\Lazarus\packager\units\i386-win32 -FuD:\github\flappylazarus\ -FUD:\github\flappylazarus\lib\i386-win32\ -FED:\github\flappylazarus\ -oD:\github\flappylazarus\game.exe -dLCL -dLCLwin32 game.lpr"/>
-</CONFIG>
