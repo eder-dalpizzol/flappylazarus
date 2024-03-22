@@ -17,7 +17,6 @@ type
     lbl: TBCLabel;
     BGRAImageList1: TBGRAImageList;
     bird: TImage;
-    Image1: TImage;
     Panel1: TPanel;
     pnlMain: TPanel;
     SpeedButton1: TSpeedButton;
@@ -53,12 +52,19 @@ procedure TfrmGame.timerCreatePipeTimer(Sender: TObject);
 
   procedure moveBg;
   var i: integer;
+      bg: TImage;
   begin
     for i := ComponentCount - 1 downto 0 do
     begin
       if (Components[i] is TImage) and (TImage(Components[i]).Tag = 3) then
       begin
-        TImage(Components[i]).Left := TImage(Components[i]).Left - 1;
+        bg := TImage(Components[i]);
+        bg.Left := bg.Left - 1;
+
+        if bg.Left <= (bg.Width * -1) then
+        begin
+          bg.Free;
+        end;
       end;
     end;
   end;
@@ -73,7 +79,31 @@ begin
 end;
 
 procedure TfrmGame.FormCreate(Sender: TObject);
+  procedure createBg;
+  var i, Left: integer;
+      bg: TImage;
+  begin
+    Left  := 0;
+    for i := 0 to 3 do
+    begin
+      bg := TImage.Create(Self);
+      bg.Parent := pnlMain;
+      bg.imageindex := 1; 
+      bg.Images := BGRAImageList1;
+      bg.Left := Left;
+      bg.Top := 0;
+      bg.Width := 601;
+      bg.Height := 1000;
+      bg.Tag := 3;
+      bg.ImageWidth := 601;
+      bg.SendToBack;
+
+      Left := Left + 601;
+    end;
+
+  end;
 begin
+  createBg;
   jumpSpeed := 0;
   velocityUpdateCounter := 0;
   started :=false;
@@ -102,11 +132,11 @@ var
   gapHeight, gapPosition, pipeTopHeight, pipeBottomHeight, pipeWidth: integer;
   beerTop, beerBot: TImage;
 begin
-  // Definindo a altura do gap e sua posição vertical
+  // the height of the gap
   gapHeight := 200; // Altura do espaço entre os pipes
   gapPosition := Random(frmGame.Height - 400) + 100; // Posição vertical do gap
 
-  // Calculando a altura do pipe superior e inferior
+  // Calculating the height of the superior  and inferior pipe
   pipeTopHeight := gapPosition;
   pipeBottomHeight := frmGame.Height - (gapPosition + gapHeight);
 
@@ -121,11 +151,10 @@ begin
   beerTop.Imagewidth := 300;
   beerTop.Top := pipeTopHeight - beerTop.Height;
   beerTop.Left := frmGame.Width;
-  //beerTop.Picture.Assign(ImageList1.Images[0]);
   beerTop.Visible := true;
   beerTop.Tag := 10;
 
-   //Criando o pipe superior
+   //Creating the top pipe
    //pipeTop := TPanel.Create(Self);
    //pipeTop.Parent := pnlMain;
    //pipeTop.BevelColor := clgreen;
@@ -138,10 +167,10 @@ begin
    //pipeTop.BevelWidth := 2;
    //pipeTop.Tag:= 10;
 
-  // Criando o gap
+  // Creating the gap
   gap := TPanel.Create(Self);
   gap.Parent := pnlMain;
-  gap.Color := clNone; // Defina para uma cor que represente o "céu" ou mantenha clDefault
+  gap.Color := clBlack;
   gap.Width := 3;
   gap.Height := gapHeight;
   gap.Left := frmGame.Width+pipeWidth-3;
@@ -159,7 +188,6 @@ begin
   beerBot.Imagewidth := 300;
   beerBot.Top := gapPosition + gapHeight;
   beerBot.Left := frmGame.Width;
-  //beerTop.Picture.Assign(ImageList1.Images[0]);
   beerBot.Visible := true;
   beerBot.Tag := 10;
 
@@ -176,9 +204,6 @@ begin
   //pipeBottom.BevelWidth := 2;
   //pipeBottom.Tag:= 10;
 
-  // O evento OnClick aplica-se aos pipes, se necessário
-  //pipeTop.OnClick := @Button1Click;
-  //pipeBottom.OnClick := @Button1Click;
 end;
 
 
@@ -206,8 +231,11 @@ var
             if panel.tag = 9 then
             begin
 
-              Label1.Caption  := IntToStr(StrToInt(Label1.Caption) + 1);
-              lbl.Caption  := FloatToStr(round((strtoint(Label1.Caption)) / 9));
+              // Label1.Caption  := IntToStr(StrToInt(Label1.Caption) + 1);
+              // lbl.Caption  := FloatToStr(round((strtoint(Label1.Caption)) / 9));
+              lbl.Caption  := IntToStr((strtoint(lbl.Caption) + 1));
+              panel.free;
+              Break;
             end;
         end;
 
@@ -216,6 +244,7 @@ var
           panel.Free;
         end;
 
+        //panel.free;
       end;
 
       if (Components[i] is TImage) and (TImage(Components[i]).Tag = 10) then
@@ -226,13 +255,6 @@ var
         begin
             if TImage(Components[i]).Tag = 10 then
               Close ;
-            //else
-            //if TImage(Components[i]).tag = 9 then
-            //begin
-            //
-            //  Label1.Caption  := IntToStr(StrToInt(Label1.Caption) + 1);
-            //  Label2.Caption  := FloatToStr(round((strtoint(Label1.Caption)) / 9));
-            //end;
         end;
 
         if TImage(Components[i]).Left < (TImage(Components[i]).Width * -1) then
@@ -246,7 +268,6 @@ var
   procedure applyPhysics;
   var
     i: Integer;
-    panel: TPanel;
   begin
     inc(velocityUpdateCounter);
     if velocityUpdateCounter > 6 then
@@ -257,20 +278,6 @@ var
 
     for i := 0 to ComponentCount - 1 do
     begin
-      if (Components[i] is TPanel) then
-      begin
-        panel := TPanel(Components[i]);
-
-        if panel.Tag = 2 then   //player
-        begin
-          panel.Top := panel.Top + jumpSpeed;
-
-          if panel.Top + panel.Height > Self.Height then
-          begin
-            panel.Top := Self.Height - panel.Height;
-          end;
-        end;
-      end;
       if (Components[i] is TImage) then
       begin
 
