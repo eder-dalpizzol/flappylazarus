@@ -132,6 +132,8 @@ var
   gapHeight, gapPosition, pipeTopHeight, pipeBottomHeight, pipeWidth: integer;
   beerTop, beerBot: TImage;
 begin
+
+
   // the height of the gap
   gapHeight := 200; // Altura do espaço entre os pipes
   gapPosition := Random(frmGame.Height - 400) + 100; // Posição vertical do gap

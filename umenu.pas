@@ -33,6 +33,7 @@ implementation
 { TfrmMenu }
 
 procedure TfrmMenu.SpeedButton1Click(Sender: TObject);
+var image: TBitmap;
 begin
   try
     frmGame:=TfrmGame.Create(Self);

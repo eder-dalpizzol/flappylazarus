@@ -9,6 +9,7 @@ object frmMenu: TfrmMenu
   ClientWidth = 400
   Color = 11970839
   Position = poDesktopCenter
+  LCLVersion = '3.2.0.0'
   object SpeedButton1: TSpeedButton
     Left = 100
     Height = 80
